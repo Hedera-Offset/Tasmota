@@ -71,6 +71,9 @@
 #define WIFI_DNS               "192.168.1.1"     // [IpAddress4] If not using DHCP set DNS1 IP address (might be equal to WIFI_GATEWAY)
 #define WIFI_DNS2              "0.0.0.0"         // [IpAddress5] If not using DHCP set DNS2 IP address (might be equal to WIFI_GATEWAY)
 
+#define HEDERA_ACCOUNT_TOKEN  "null" 
+#define HEDERA_DEVICE_ID      "null"
+
 #ifndef STA_SSID1
 #define STA_SSID1              ""                // [Ssid1] Wi-Fi SSID
 #endif
