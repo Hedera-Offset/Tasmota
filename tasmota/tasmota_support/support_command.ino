@@ -34,7 +34,7 @@ const char kTasmotaCommands[] PROGMEM = "|"  // No prefix
   D_CMND_DEVICENAME "|" D_CMND_FN "|" D_CMND_FRIENDLYNAME "|" D_CMND_SWITCHMODE "|" D_CMND_INTERLOCK "|" D_CMND_TELEPERIOD "|" D_CMND_RESET "|" D_CMND_TIME "|" D_CMND_TIMEZONE "|" D_CMND_TIMESTD "|"
   D_CMND_TIMEDST "|" D_CMND_ALTITUDE "|" D_CMND_LEDPOWER "|" D_CMND_LEDSTATE "|" D_CMND_LEDMASK "|" D_CMND_LEDPWM_ON "|" D_CMND_LEDPWM_OFF "|" D_CMND_LEDPWM_MODE "|"
   D_CMND_WIFIPOWER "|" D_CMND_TEMPOFFSET "|" D_CMND_HUMOFFSET "|" D_CMND_SPEEDUNIT "|" D_CMND_GLOBAL_TEMP "|" D_CMND_GLOBAL_HUM"|" D_CMND_GLOBAL_PRESS "|" D_CMND_SWITCHTEXT "|" D_CMND_WIFISCAN "|" D_CMND_WIFITEST "|"
-  D_CMND_ZIGBEE_BATTPERCENT "|"
+  D_CMND_ZIGBEE_BATTPERCENT "|" D_CMND_HEDERA_ACCOUNT_TOKEN "|" D_CMND_HEDERA_DEVICE_ID "|"
 #ifdef USE_I2C
   D_CMND_I2CSCAN "|" D_CMND_I2CDRIVER "|"
 #endif
@@ -74,7 +74,7 @@ void (* const TasmotaCommand[])(void) PROGMEM = {
   &CmndDevicename, &CmndFriendlyname, &CmndFriendlyname, &CmndSwitchMode, &CmndInterlock, &CmndTeleperiod, &CmndReset, &CmndTime, &CmndTimezone, &CmndTimeStd,
   &CmndTimeDst, &CmndAltitude, &CmndLedPower, &CmndLedState, &CmndLedMask, &CmndLedPwmOn, &CmndLedPwmOff, &CmndLedPwmMode,
   &CmndWifiPower, &CmndTempOffset, &CmndHumOffset, &CmndSpeedUnit, &CmndGlobalTemp, &CmndGlobalHum, &CmndGlobalPress, &CmndSwitchText, &CmndWifiScan, &CmndWifiTest,
-  &CmndBatteryPercent,
+  &CmndBatteryPercent, &CmndSetAccountToken, &CmndSetHederaDeviceId,
 #ifdef USE_I2C
   &CmndI2cScan, &CmndI2cDriver,
 #endif
@@ -652,6 +652,36 @@ void CmndPower(void)
     ResponseClear();
   }
 }
+
+
+void CmndSetAccountToken(void)
+{
+  int32_t payload = XdrvMailbox.payload;
+
+  if( XdrvMailbox.data_len )
+  {
+    SettingsUpdateText( SET_HEDERA_ACCOUNT_TOKEN, (const char*)XdrvMailbox.data);
+  }
+
+  Response_P( "{ \"D_CMND_HEDERA_ACCOUNT_TOKEN\": \"%s\" }", SettingsText(SET_HEDERA_ACCOUNT_TOKEN) );
+  CmndStatusResponse(22);
+  ResponseClear();
+}
+
+void CmndSetHederaDeviceId(void)
+{
+  int32_t payload = XdrvMailbox.payload;
+
+  if( XdrvMailbox.data_len )
+  {
+    SettingsUpdateText( SET_HEDERA_DEVICE_ID, (const char*)XdrvMailbox.data);
+  }
+
+  Response_P( "{ \"D_CMND_HEDERA_DEVICE_ID\": \"%s\" }", SettingsText(SET_HEDERA_DEVICE_ID) );
+  CmndStatusResponse(22);
+  ResponseClear();
+}
+
 
 void CmndPowerLock(void) {
   // PowerLock    - Show current state

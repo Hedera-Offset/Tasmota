@@ -1079,6 +1079,8 @@ void SettingsDefaultSet2(void) {
   SettingsUpdateText(SET_HOSTNAME, WIFI_HOSTNAME);
   SettingsUpdateText(SET_RGX_SSID, PSTR(WIFI_RGX_SSID));
   SettingsUpdateText(SET_RGX_PASSWORD, PSTR(WIFI_RGX_PASSWORD));
+  SettingsUpdateText(SET_HEDERA_ACCOUNT_TOKEN, PSTR(HEDERA_ACCOUNT_TOKEN));
+  SettingsUpdateText(SET_HEDERA_DEVICE_ID, PSTR(HEDERA_DEVICE_ID));
   Settings->sbflag1.range_extender = WIFI_RGX_STATE;
   Settings->sbflag1.range_extender_napt = WIFI_RGX_NAPT;
   flag5.wifi_no_sleep |= WIFI_NO_SLEEP;
