@@ -65,6 +65,8 @@
 #define D_JSON_CURRENT_NEUTRAL "CurrentNeutral"
 #define D_JSON_DARKNESS "Darkness"
 #define D_JSON_DATA "Data"
+#define D_CMND_HEDERA_ACCOUNT_TOKEN "HederaAccountToken"
+#define D_CMND_HEDERA_DEVICE_ID "HederaDeviceId"
 #define D_JSON_DEWPOINT "DewPoint"
 #define D_JSON_DO "DisolvedOxygen"
 #define D_JSON_DISTANCE "Distance"
