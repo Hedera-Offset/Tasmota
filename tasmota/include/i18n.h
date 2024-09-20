@@ -67,6 +67,7 @@
 #define D_JSON_DATA "Data"
 #define D_CMND_HEDERA_ACCOUNT_TOKEN "HederaAccountToken"
 #define D_CMND_HEDERA_DEVICE_ID "HederaDeviceId"
+#define D_CMND_HEDERA_OFFSET_NODE_API "HederaAPI"
 #define D_JSON_DEWPOINT "DewPoint"
 #define D_JSON_DO "DisolvedOxygen"
 #define D_JSON_DISTANCE "Distance"
