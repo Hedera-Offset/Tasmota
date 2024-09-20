@@ -703,10 +703,20 @@ void CmndHederaRegisterDevice(void)
   int32_t payload = XdrvMailbox.payload;
 
   const char* accountToken = SettingsText(SET_HEDERA_ACCOUNT_TOKEN);
-  // const char* deviceId = SettingsText(SET_HEDERA_ACCOUNT_TOKEN);
+
+  const char* base_url = SettingsText(SET_HEDERA_OFFSET_NODE_API);
+  const char* route = "/devices";
+
+  char* full_path[100];
+
+  strcpy(full_path, base_url);
+  strcpy(full_path, route);
+
+
+
 
   HTTPClientLight http;
-  http.begin(SettingsText(SET_HEDERA_OFFSET_NODE_API));
+  http.begin(full_path);
   http.addHeader("Content-Type", "application/json");
   
   JsonDocument doc;
