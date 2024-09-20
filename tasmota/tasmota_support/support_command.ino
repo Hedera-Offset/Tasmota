@@ -74,7 +74,7 @@ void (* const TasmotaCommand[])(void) PROGMEM = {
   &CmndDevicename, &CmndFriendlyname, &CmndFriendlyname, &CmndSwitchMode, &CmndInterlock, &CmndTeleperiod, &CmndReset, &CmndTime, &CmndTimezone, &CmndTimeStd,
   &CmndTimeDst, &CmndAltitude, &CmndLedPower, &CmndLedState, &CmndLedMask, &CmndLedPwmOn, &CmndLedPwmOff, &CmndLedPwmMode,
   &CmndWifiPower, &CmndTempOffset, &CmndHumOffset, &CmndSpeedUnit, &CmndGlobalTemp, &CmndGlobalHum, &CmndGlobalPress, &CmndSwitchText, &CmndWifiScan, &CmndWifiTest,
-  &CmndBatteryPercent, &CmndSetAccountToken, &CmndSetHederaDeviceId,
+  &CmndBatteryPercent, &CmndHederaAccountToken, &CmndHederaDeviceId,
 #ifdef USE_I2C
   &CmndI2cScan, &CmndI2cDriver,
 #endif
@@ -654,7 +654,7 @@ void CmndPower(void)
 }
 
 
-void CmndSetAccountToken(void)
+void CmndHederaAccountToken(void)
 {
   int32_t payload = XdrvMailbox.payload;
 
@@ -668,7 +668,7 @@ void CmndSetAccountToken(void)
   ResponseClear();
 }
 
-void CmndSetHederaDeviceId(void)
+void CmndHederaDeviceId(void)
 {
   int32_t payload = XdrvMailbox.payload;
 

@@ -462,7 +462,7 @@ enum SettingsTextIndex { SET_OTAURL,
                          SET_TEMPLATE_NAME,
                          SET_DEV_GROUP_NAME1, SET_DEV_GROUP_NAME2, SET_DEV_GROUP_NAME3, SET_DEV_GROUP_NAME4,  // MAX_DEV_GROUP_NAMES
                          SET_DEVICENAME,
-                         SET_TELEGRAM_TOKEN, SET_TELEGRAM_CHATID,
+                         SET_TELEGRAM_TOKEN, SET_TELEGRAM_CHATID, SET_HEDERA_ACCOUNT_TOKEN, SET_HEDERA_DEVICE_ID,
 #ifdef ESP8266
                          SET_ADC_PARAM1,
                          SET_SWITCH_TXT1, SET_SWITCH_TXT2, SET_SWITCH_TXT3, SET_SWITCH_TXT4, SET_SWITCH_TXT5, SET_SWITCH_TXT6, SET_SWITCH_TXT7, SET_SWITCH_TXT8,  // MAX_SWITCHES_TXT
@@ -483,7 +483,7 @@ enum SettingsTextIndex { SET_OTAURL,
                          // Index above are not stored in Settings and should be handled specifically in SettingText()
                          SET_BUTTON17, SET_BUTTON18, SET_BUTTON19, SET_BUTTON20, SET_BUTTON21, SET_BUTTON22, SET_BUTTON23, SET_BUTTON24,
                          SET_BUTTON25, SET_BUTTON26, SET_BUTTON27, SET_BUTTON28, SET_BUTTON29, SET_BUTTON30, SET_BUTTON31, SET_BUTTON32,
-                         SET_FINAL_MAX, SET_HEDERA_ACCOUNT_TOKEN, SET_HEDERA_DEVICE_ID,
+                         SET_FINAL_MAX,
                          };
 
 enum SpiInterfaces { SPI_NONE, SPI_MOSI, SPI_MISO, SPI_MOSI_MISO };
