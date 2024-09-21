@@ -710,7 +710,7 @@ void CmndHederaRegisterDevice(void)
   char full_path[100];
 
   strcpy(full_path, base_url);
-  strcpy(full_path, route);
+  strcat(full_path, route);
 
 
 

@@ -288,7 +288,7 @@ void HandleMetrics(void) {
   JsonParser parser((char *)jsonStr.c_str());
   JsonParserObject root = parser.getRootObject();
   if (root) { // did JSON parsing succeed?
-    for (auto key1 : root) {
+    for (auto key1 : root) { 
       JsonParserToken value1 = key1.getValue();
       if (value1.isObject()) {
         JsonParserObject Object2 = value1.getObject();

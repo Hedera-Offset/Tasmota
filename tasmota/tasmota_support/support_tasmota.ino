@@ -17,12 +17,76 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <ArduinoJson.h>
+#include <string.h>
+
+
 #if defined(ESP32) && defined(USE_WEBCLIENT_HTTPS)
   #include "HttpClientLight.h"
 #endif
 
 const char kSleepMode[] PROGMEM = "Dynamic|Normal";
 const char kPrefixes[] PROGMEM = D_CMND "|" D_STAT "|" D_TELE;
+int counted_seconds = 0;
+
+
+void HederaOffsetNetworkScheduler(){
+  ++counted_seconds;
+  // if( counted_seconds >= (uint32_t)atoi(sdkGetSetting( SET_NOTARIZTATION_PERIODICITY )))
+  uint32_t rest = 5;
+
+  if( counted_seconds >= rest)
+  {
+    counted_seconds=0;
+
+    const char* deviceId = SettingsText(SET_HEDERA_DEVICE_ID);
+
+    const char* base_url = SettingsText(SET_HEDERA_OFFSET_NODE_API);
+    const char* route = "/notarizations";
+
+    char full_path[200];
+
+
+
+    strcpy(full_path, base_url);
+    strcat(full_path, route);
+
+    printf("API Response %s\n", base_url);
+    printf("API Response %s\n", route);
+    printf("API Response %s\n", full_path);
+
+    HTTPClientLight http;
+    http.begin(full_path);
+    http.addHeader("Content-Type", "application/json");
+    
+    JsonDocument doc;
+    doc["deviceId"] = deviceId;
+    doc["meter_type"] = "Sonoff";
+    doc["time"] = "2024-08-19T14:30:00Z";
+    doc["temprature"] = "32";
+    doc["totalEnergy"] = "24";
+    doc["today"] = 2;
+    doc["power"] = 240;
+    doc["apparentPower"] = 2;
+    doc["reactivePower"] = 54;
+    doc["factor"] = 32;
+    doc["voltage"] = 120;
+    doc["current"] = 5;
+    doc["raw"] = "null";
+
+    String js;
+    serializeJson(doc, js);
+
+    int httpResponseCode = http.POST(js);
+    http.end();
+
+    AddLog(2, js.c_str());
+    printf("API Response %d\n", httpResponseCode);
+
+
+  }
+}
+
 
 char* Format(char* output, const char* input_p, int size)
 {
@@ -1098,6 +1162,7 @@ void MqttPublishTeleperiodSensor(void) {
 void PerformEverySecond(void)
 {
   TasmotaGlobal.uptime++;
+  HederaOffsetNetworkScheduler();
 
   if (POWER_CYCLE_TIME == TasmotaGlobal.uptime) {
     UpdateQuickPowerCycle(false);
@@ -1169,6 +1234,10 @@ void PerformEverySecond(void)
   }
 
   MqttPublishLoggingAsync(false);
+
+
+
+
 #ifdef SYSLOG_UPDATE_SECOND
   SyslogAsync(false);
 #endif  // SYSLOG_UPDATE_SECOND
