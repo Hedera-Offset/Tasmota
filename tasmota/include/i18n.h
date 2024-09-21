@@ -69,6 +69,7 @@
 #define D_CMND_HEDERA_DEVICE_ID "HederaDeviceId"
 #define D_CMND_HEDERA_OFFSET_NODE_API "HederaAPI"
 #define D_CMND_HEDERA_REGISTER_DEVICE "RegisterDevice"
+#define D_CMND_NOTARIZATION_PERIODICITY "NotarizationPeriodicity"
 #define D_JSON_DEWPOINT "DewPoint"
 #define D_JSON_DO "DisolvedOxygen"
 #define D_JSON_DISTANCE "Distance"
