@@ -707,7 +707,7 @@ void CmndHederaRegisterDevice(void)
   const char* base_url = SettingsText(SET_HEDERA_OFFSET_NODE_API);
   const char* route = "/devices";
 
-  char* full_path[100];
+  char full_path[100];
 
   strcpy(full_path, base_url);
   strcpy(full_path, route);
