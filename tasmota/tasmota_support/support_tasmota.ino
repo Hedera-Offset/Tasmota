@@ -32,10 +32,9 @@ int counted_seconds = 0;
 
 void HederaOffsetNetworkScheduler(){
   ++counted_seconds;
-  // if( counted_seconds >= (uint32_t)atoi(sdkGetSetting( SET_NOTARIZTATION_PERIODICITY )))
-  uint32_t rest = 5;
 
-  if( counted_seconds >= rest)
+
+  if( counted_seconds >= (uint32_t)atoi(SettingsText(SET_NOTARIZATION_PERIODICITY)))
   {
     counted_seconds=0;
 
